@@ -1,8 +1,9 @@
 # JUNOS-PR1247900-Detection
 
-This bunch of scripts will scan through the routing table for blackhole routes, tested on raspbian, raspberry pi 1
+This bunch of scripts will scan through the routing table for blackhole routes, tested on MX480.
 - language used - expect and bash
 - objective to detect RSVP-LSP routing blackholes and measure the duration of impact.
+- monitoring agent deployed, OS - raspbian, raspberry pi 1
 - work schematic
 i.e
 
