@@ -2,7 +2,6 @@
 This bunch of scripts will scan through the routing table for blackhole routes, tested on raspbian, raspberry pi 1
 - language used - expect and bash
 - objective to detect RSVP-LSP routing blackholes and measure the duration of impact.
-
 - work schematic
 i.e
 
