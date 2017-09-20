@@ -1,0 +1,57 @@
+#!/usr/bin/expect
+set argj1 [lindex $argv 0]
+set argj2 [lindex $argv 1]
+set argh1 [lindex $argv 2]
+
+# no better way to do this, either you pass from parent or store in-script
+set my_password "YOUR_LOGIN PASSWORD"
+#use correct prompt
+set prompt ":|#|\\\$\]"
+
+# My login account is ongth, you change this to match yours
+spawn ssh "ongth\@$argj1"
+  expect {
+    # conditional prompt appears in case ssh-agent is not active
+    "*.ssh/id_rsa':*" {
+      send -- "$my_password\r"
+      expect "\[ongth\@*:~\] "
+      send "ssh ongth\@$argj2\r"
+      expect "*.ssh/id_rsa':*"
+      send -- "$my_password\r"
+      expect "\[ongth\@*:~\] "
+      send "ssh ongth\@$argh1\r"
+      expect "*assword:*"
+      send -- "$my_password\r"
+      expect "ongth\@br00*.sgp0*-re*> "
+      send "set cli screen-width 1024\r"
+      expect "ongth\@br00*.sgp0*-re*> "
+      send "set cli screen-length 0\r"
+      
+      #1 set - Detect prompt
+      expect "ongth\@br00*.sgp0*-re*> "
+      #1 set - Get show route and match PR issue
+      send "show route 58.65.0.0/19 | match \"Push|\\*\"\r"
+      
+      # Below are repetiion
+      expect "ongth\@br00*.sgp0*-re*> "
+      send "show route 116.51.0.0/16 | match \"Push|\\*\"\r" 
+      expect "ongth\@br00*.sgp0*-re*> "
+      send "show route 175.28.8.0/22 | match \"Push|\\*\"\r" 
+      expect "ongth\@br00*.sgp0*-re*> "
+      send "show route 202.136.160.0/19 | match \"Push|\\*\"\r" 
+      expect "ongth\@br00*.sgp0*-re*> "
+      send "show route protocol bgp aspath-regex \"^$\" | match \"Push|\\*\"\r" 
+      expect "ongth\@br00*.sgp0*-re*> "
+      send "show route protocol direct | match \"Push|\\*\"\r" 
+      expect "ongth\@br00*.sgp0*-re*> "
+      send "show route protocol isis | match \"Push|\\*\"\r" 
+      expect "ongth\@br00*.sgp0*-re*> "
+      
+      # Exit properly
+      send "exit\r" 
+      expect "\[ongth\@*:~\] "
+      send "exit\r" 
+      expect "\[ongth\@*:~\] "
+      send "exit\r" 
+    }
+  }
