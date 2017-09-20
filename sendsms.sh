@@ -22,15 +22,15 @@ rand=$[$RANDOM % 2]
         sleep 1 
         echo mail from:\<\> 
         sleep 1 
-        echo rcpt to:12345678@visualgsm.ntt.com.sg
+        echo rcpt to:12345678@visualgsm.yourdomain.com.sg
         sleep 1 
-        echo rcpt to:23456789@visualgsm.ntt.com.sg
+        echo rcpt to:23456789@visualgsm.yourdomain.com.sg
         sleep 1 
-        echo rcpt to:34567890@visualgsm.ntt.com.sg
+        echo rcpt to:34567890@visualgsm.yourdomain.com.sg
         sleep 1 
-        echo rcpt to:45678901@visualgsm.ntt.com.sg
+        echo rcpt to:45678901@visualgsm.yourdomain.com.sg
         sleep 1 
-        echo rcpt to:56789012@visualgsm.ntt.com.sg
+        echo rcpt to:56789012@visualgsm.yourdomain.com.sg
         sleep 1 
         echo data 
 	echo "Subject: [$arg2] INET_LSP-at-$arg1" 
